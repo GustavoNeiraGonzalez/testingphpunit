@@ -1,0 +1,60 @@
+paso 1:
+
+instalamos phpunit en nuestra carpeta para programar en php 
+composer require phpunit/phpunit --dev
+
+---
+
+paso 2:
+
+en nuestro archivo creado por phpunit "composer.json" se agrega: 
+    "autoload":{
+        "classmap": [
+            "src/"
+        ]
+    },
+donde "src/" indica la carpceta donde estara el codigo php (por lo que no neceseriamente se puede llamara src 
+siempre), y asi facilitamos el no importar las clases para usarlas en nuestros tests
+
+ejecutar en consola:
+composer dump-autoload -o
+----
+
+paso 3:
+
+aqui creamos una carpeta en el directorio principal es decir ni en src ni en vendor (de phpunit)
+preferiblemente llamada tests, en esta carpeta creariamos un archivo con algun 
+nombre pero que termine en: ----->         Test          <---------
+no Tests (PORQUE DARIA ERROR de que no ejecutaran los tests) por ejemplo OperationsTest.php
+
+entonces dentro del archivo quedaria algo asi:
+<?php
+use PHPUnit\Framework\TestCase;
+
+class OperationsTest extends TestCase{
+    private $op;
+
+    //funcion de phpunit para inicializar objetos que requeriremos 
+    //en los tests donde new Testing indica el archivo de src Testing
+
+    public function setUp():void{
+        $this->op = new Testing();
+    }
+    //--------- 
+    //aqui la funcion de phpunit assertEquals busca que el valor sea 7
+    //despues de la coma se busca la funcion sum que creamos anteriormente
+    //la cual sumara valores
+
+    public function testSumWithTwoValues(){
+        $this->assertEquals(7, $this->op->sum(2,5));
+    }
+}
+?>
+la funcion que ya ejecutara los testing son testSumWithTwoValues
+recordar crear nombres descriptivos para este tipo de funciones para tener una idea sin ver otro codigo
+-----
+
+paso 4:
+
+ejecutar el comando para ejecutar los testing y aqui indicará si se ejecutó correctamente o dio error.
+ ./vendor/bin/phpunit tests
