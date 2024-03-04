@@ -3,7 +3,7 @@ paso 1:
 instalamos phpunit en nuestra carpeta para programar en php 
 composer require phpunit/phpunit --dev
 
----
+-----------------
 
 paso 2:
 
@@ -18,7 +18,7 @@ siempre), y asi facilitamos el no importar las clases para usarlas en nuestros t
 
 ejecutar en consola:
 composer dump-autoload -o
-----
+------------------
 
 paso 3:
 
@@ -40,7 +40,7 @@ class OperationsTest extends TestCase{
     public function setUp():void{
         $this->op = new Testing();
     }
-    //--------- 
+    
     //aqui la funcion de phpunit assertEquals busca que el valor sea 7
     //despues de la coma se busca la funcion sum que creamos anteriormente
     //la cual sumara valores
@@ -52,9 +52,24 @@ class OperationsTest extends TestCase{
 ?>
 la funcion que ya ejecutara los testing son testSumWithTwoValues
 recordar crear nombres descriptivos para este tipo de funciones para tener una idea sin ver otro codigo
------
+-------------------
 
 paso 4:
 
 ejecutar el comando para ejecutar los testing y aqui indicará si se ejecutó correctamente o dio error.
  ./vendor/bin/phpunit tests
+
+----------------------------
+
+valores no esperados y nulos
+
+    //Verificar suma con valores nulos (no da error por valor nulo Y si esperas
+    //un valor numerico dará error de numero no esperado, lo cual es erroneo,
+    //y si esperas un valor nulo, dara un ok si das 2 valores nulos)
+    //por lo que se debe arreglar dentro de la funcion sum
+
+    public function testSumWithNullValues(){
+        $this->assertEquals(NULL, $this->op->sum(NUll,NULL));
+    }
+
+-------------------

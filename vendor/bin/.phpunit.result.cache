@@ -1,1 +1,1 @@
-{"version":1,"defects":{"OperationsTest::testSumWithTwoValues":7},"times":{"OperationsTest::testSumWithTwoValues":0.026}}
+{"version":1,"defects":{"OperationsTest::testSumWithTwoValues":7,"OperationsTest::testSumWithNullValues":7,"OperationsTest::testSumWithNullValuesException":7},"times":{"OperationsTest::testSumWithTwoValues":0.092,"OperationsTest::testSumWithNullValues":0.002,"OperationsTest::testSumWithNullValuesException":0.003}}
