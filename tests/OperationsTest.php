@@ -26,6 +26,8 @@ class OperationsTest extends TestCase{
     public function testSumWithNullValues(){
         $this->assertEquals(NULL, $this->op->sum(NULL, NULL));
     }
+    // esta funcion sirve para validar un error en especifico que es 
+    // lanzado en la funcion propia, no aqui
     public function testSumWithNullValuesException(){
         $this->expectException(InvalidArgumentException::class);
         $this->op->sum(NULL,NULL);
