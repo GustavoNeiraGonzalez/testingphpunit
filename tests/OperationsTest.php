@@ -16,22 +16,29 @@ class OperationsTest extends TestCase{
     //agregado mensaje en caso de error: "la suma de dos..." este mensaje se 
     //lanza si el error del test no pasa la prueba
     public function testSumWithTwoValues(){
-        $this->assertEquals(7, $this->op->sum(2,NUll), 'La suma de dos valores debe devolver valores numericos');
+        $this->assertEquals(7, $this->op->sum(5,2), 'La suma de dos valores debe devolver valores numericos');
     }
     //Verificar suma con valores nulos (no da error por valor nulo Y si esperas
     //un valor numerico dara error de numero no esperado, lo cual es erroneo,
     //y si esperas un valor nulo, dara un ok si das 2 valores nulos)
     //por lo que se debe arreglar dentro de la funcion sum
 
+    /*
     public function testSumWithNullValues(){
         $this->assertEquals(NULL, $this->op->sum(NULL, NULL));
     }
-    // esta funcion sirve para validar un error en especifico que es 
-    // lanzado en la funcion propia, no aqui
+    */
+    // esta funcion sirve para validar un error en especifico en este caso
+    // invalidargument, que se refiere a que no es un valor numerico el cual
+    // se espera en esta suma ademas este error se debe lanzar manualmente en un if
+    // es decir validar que sean valores numericos en la operacion de suma
     public function testSumWithNullValuesException(){
         $this->expectException(InvalidArgumentException::class);
         $this->op->sum(NULL,NULL);
-
+    }
+    public function testSumWithNotNumericValuesException(){
+        $this->expectException(InvalidArgumentException::class);
+        $this->op->sum('a','hello');
     }
 }
 ?>
