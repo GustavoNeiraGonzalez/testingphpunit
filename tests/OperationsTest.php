@@ -41,6 +41,23 @@ class OperationsTest extends TestCase{
         $this->expectException(InvalidArgumentException::class);
         $this->op->sum('a','hello');
     }
-    
+
+    public function testDivideWithTwoValues(){
+        $this->assertEquals(3, $this->op->divide(6,2), 'La division de dos valores debe devolver valores numericos');
+    }
+
+    public function testDivideWithNullValuesException(){
+        $this->expectException(InvalidArgumentException::class);
+        $this->op->divide(NULL,NULL);
+    }
+    public function testDivideWithNotNumericValuesException(){
+        $this->expectException(InvalidArgumentException::class);
+        $this->op->divide('a','hello');
+    }
+    public function testDivideByZero(){
+        $this->expectException(DivisionByZeroError::class);
+        $this->op->divide(0,5);
+    }
+
 }
 ?>
