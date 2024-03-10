@@ -41,5 +41,6 @@ class OperationsTest extends TestCase{
         $this->expectException(InvalidArgumentException::class);
         $this->op->sum('a','hello');
     }
+    
 }
 ?>
