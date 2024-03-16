@@ -7,8 +7,8 @@
             return $num1 + $num2;
         }
         public function divide($num1, $num2){
-            if ($num1 === NULL || $num2 === NULL || !is_numeric($num1) || !is_numeric($num2)) throw new InvalidArgumentException("values are not numerics");
-            if ($num1 == 0 || $num2 == 0) throw new DivisionByZeroError();
+            if ($num1 === NULL || $num2 === NULL || !is_numeric($num1) || !is_numeric($num2)) throw new InvalidArgumentException("values are not numerics solo valores numericos puto");
+            if ($num1 == 0 || $num2 == 0) throw new DivisionByZeroError('no poner 0');
             return $num1 / $num2;
         }
     }

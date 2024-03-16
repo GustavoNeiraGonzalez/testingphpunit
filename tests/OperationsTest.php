@@ -58,6 +58,25 @@ class OperationsTest extends TestCase{
         $this->expectException(DivisionByZeroError::class);
         $this->op->divide(0,5);
     }
+    // --- data providers --- 
+        /**
+     * @dataProvider divisionDataProvider
+     */
+    public function testDivideWithTwoValuesDataProvider($dividend, $divisor, $expected)
+    {
+        $result = $this->op->divide($dividend, $divisor);
+        $this->assertEquals($expected, $result);
+    }
 
+    public function divisionDataProvider()
+    {
+        return [
+            [6, 2, 3], // División válida
+            [10, 5, 2], // División válida
+            //[0, 5, 0], // División por cero (debe devolver 0) }error esperado}
+            [8, 0, DivisionByZeroError::class], // División por cero (debe lanzar una excepción)
+            ['a', 'hello', InvalidArgumentException::class], // Valores no numéricos (debe lanzar una excepción)
+        ];
+    }
 }
 ?>

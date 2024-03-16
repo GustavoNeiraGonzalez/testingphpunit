@@ -25,7 +25,8 @@ paso 3:
 aqui creamos una carpeta en el directorio principal es decir ni en src ni en vendor (de phpunit)
 preferiblemente llamada tests, en esta carpeta creariamos un archivo con algun 
 nombre pero que termine en: ----->         Test          <---------
-no Tests (PORQUE DARIA ERROR de que no ejecutaran los tests) por ejemplo OperationsTest.php
+no Tests (PORQUE DARIA ERROR de que no ejecutaran los tests) por ejemplo OperationsTest.php ->EST
+O NO
 
 entonces dentro del archivo quedaria algo asi:
 <?php
