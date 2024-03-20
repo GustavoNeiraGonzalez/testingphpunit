@@ -16,6 +16,7 @@ class OperationsTest extends TestCase{
     //agregado mensaje en caso de error: "la suma de dos..." este mensaje se 
     //lanza si el error del test no pasa la prueba
     public function testSumWithTwoValues(){
+        $testing = new Testing(); 
         $this->assertEquals(7, $this->op->sum(5,2), 'La suma de dos valores debe devolver valores numericos');
     }
     //Verificar suma con valores nulos (solo a modo de prueba, realmente no 
@@ -100,7 +101,7 @@ class OperationsTest extends TestCase{
                ->willReturn(['first_name' => 'John', 'last_name' => 'Doe']);
 
         // Creamos una instancia de UserService utilizando el mock de la base de datos
-        $userService = new Testing($dbMock);
+        $userService = new TestingMockDB($dbMock);
 
         // Probamos la función getUserFullName
         $result = $userService->getUserFullName(1);

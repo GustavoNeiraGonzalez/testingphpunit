@@ -74,3 +74,27 @@ valores no esperados y nulos
     }
 
 -------------------
+
+mocks:
+una funcionalidad para controlar funciones de las que no tienes control,
+por ejemplo tienes un metodo para encontrar la temperatura pero esta temperatura
+devuelve la temperatura actual, y para las pruebas no solo te sirve esa
+temperatura en especifico, entonces con un mock lo que haras es que usas 
+ese metodo y devuelves lo que tu quieres que devuelva especificamente
+ESTO PUEDE AYUDAR A SIMULAR BASES DE DATOS
+
+
+
+
+
+la programacion del testing se basa
+
+esperar resultados especificos de las funciones
+
+acortar las funciones de prueba con los data providers. 
+
+El manejo de excepciones,
+
+ ¿Bases de datos ficticios? 
+
+Y pruebas en base al rendimiento de la app?

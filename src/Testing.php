@@ -1,10 +1,6 @@
 <?php
     class Testing{
-        private $db;
-        public function __construct(DatabaseInterface $db)
-        {
-            $this->db = $db;
-        }
+        public function __construct(){}
 
         public function sum($num1, $num2){
             if ($num1 == NULL || $num2 == NULL || !is_numeric($num1) || !is_numeric($num2)) throw new InvalidArgumentException("values are not numerics");
@@ -18,16 +14,5 @@
 
 
 
-        //aqui usaremos un mock para simular una base de datos
-    
-        public function getUserFullName($userId)
-        {
-            $user = $this->db->getUserById($userId);
-            if ($user) {
-                return $user['first_name'] . ' ' . $user['last_name'];
-            } else {
-                return null;
-            }
-        }
     }
 ?>
