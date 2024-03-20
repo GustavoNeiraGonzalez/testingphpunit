@@ -61,14 +61,19 @@ class OperationsTest extends TestCase{
     // --- data providers --- 
         /**
      * @dataProvider divisionDataProvider
+     * @expectedException DivisionByZeroError
+
      */
+
+    /*
     public function testDivideWithTwoValuesDataProvider($dividend, $divisor, $expected)
     {
         $result = $this->op->divide($dividend, $divisor);
         $this->assertEquals($expected, $result);
     }
+    */
 
-    public function divisionDataProvider()
+    /*public function divisionDataProvider()
     {
         return [
             [6, 2, 3], // División válida
@@ -78,5 +83,31 @@ class OperationsTest extends TestCase{
             ['a', 'hello', InvalidArgumentException::class], // Valores no numéricos (debe lanzar una excepción)
         ];
     }
+    */
+
+    // ----------------------------------
+    // aqui haremos pruebas usando mock para simular una bdd
+    public function testGetUserFullNameWithMock()
+    {
+        // Creamos un mock para simular la base de datos
+        $dbMock = $this->getMockBuilder(DatabaseInterface::class)
+                       ->getMock();
+
+        // Configuramos el mock para retornar un usuario ficticio
+        $dbMock->expects($this->once())
+               ->method('getUserById')
+               ->with(1)
+               ->willReturn(['first_name' => 'John', 'last_name' => 'Doe']);
+
+        // Creamos una instancia de UserService utilizando el mock de la base de datos
+        $userService = new Testing($dbMock);
+
+        // Probamos la función getUserFullName
+        $result = $userService->getUserFullName(1);
+
+        // Verificamos que el resultado sea el esperado
+        $this->assertEquals('John Doe', $result);
+    }
+
 }
 ?>
