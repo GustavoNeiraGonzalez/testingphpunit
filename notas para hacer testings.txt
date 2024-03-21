@@ -72,7 +72,36 @@ valores no esperados y nulos
     public function testSumWithNullValues(){
         $this->assertEquals(NULL, $this->op->sum(NUll,NULL));
     }
+----------------
+DATA PROVIDERS:
+//aqui usamos los data providers, que al final son lo que hacen que no
+//escribas los tests similares una y otra vez, aqui mas que nada son
+//test que estan correctos con sus datos, por ejemplo no esperar que
+//fallen ya sea por excepciones o datos invalidos como una division 
+//que no coincida, porque ya esto se maneja por separado, ni juntas las
+//excepciones en otro data providers, eso no se hace, las excepciones por 
+//separado
 
+ public static function divisionDataProvider()
+    {
+        return [
+            [6, 2, 3], // División válida
+            [10, 5, 2], // División válida
+            [10,5,2]
+        ];
+    }
+
+AQUI VIENE EL LLAMADO AL DATA PROVIDERS, LO QUE ESTA "COMENTADO" SE DEBE AGREGAR SI O SI,
+PORQUE ASI SE LLAMA AL DATA PROVIDERS CON @dataProvider "nombredataprovider" y comentado
+
+ /**
+     * @dataProvider divisionDataProvider
+     */
+    public function testDivideWithTwoValuesDataProvider($dividend, $divisor, $expected)
+    {
+        $result = $this->op->divide($dividend, $divisor);
+        $this->assertEquals($expected, $result);
+    }
 -------------------
 
 mocks:
@@ -88,23 +117,26 @@ LLAMAS A UNA API EXTERNA REALMENTE NO LA USAS,PORQUE TU BUSCAS EL RESULTADO ESPE
 QUE NECESITAS PARA LOS TESTS.
 
 EJEMPLO USANDO LA FUNCION SUM (SUMAR):
-  public function testMockSum()
+   public function testMockSumWithTwoValue()
     {
+        $num1 = 1;
+        $num2 = 2;
+        $resultSum = 3;
         // Crear un mock para la clase Calculator
-        $mock = $this->getMockBuilder(Testing::class) 
+        $mock = $this->getMockBuilder(Testing::class)
                      ->getMock();
 
         // Definir el comportamiento esperado del mock
         $mock->expects($this->once())
              ->method('sum')
-             ->with(2, 3)
-             ->willReturn(5);
+             ->with($num1,$num2)
+             ->willReturn($resultSum);
 
         // Utilizar el mock en lugar de la instancia real
-        $result = $mock->sum(2, 3);
+        $result = $mock->sum($num1,$num2);
 
-        // Verificar que el resultado sea 5 usando el mock (result)
-        $this->assertEquals(5, $result);
+        // Verificar el resultado usando el mock
+        $this->assertEquals($resultSum, $result);
     
     }
 
