@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-
+use DatabaseInterface;
 class OperationsTest extends TestCase{
     private $op;
 
@@ -61,8 +61,6 @@ class OperationsTest extends TestCase{
     }
     // --- data providers --- 
         /**
-     * @dataProvider divisionDataProvider
-     * @expectedException DivisionByZeroError
 
      */
 
@@ -88,26 +86,24 @@ class OperationsTest extends TestCase{
 
     // ----------------------------------
     // aqui haremos pruebas usando mock para simular una bdd
-    public function testGetUserFullNameWithMock()
+    public function testMockSum()
     {
-        // Creamos un mock para simular la base de datos
-        $dbMock = $this->getMockBuilder(DatabaseInterface::class)
-                       ->getMock();
+        // Crear un mock para la clase Calculator
+        $mock = $this->getMockBuilder(Testing::class)
+                     ->getMock();
 
-        // Configuramos el mock para retornar un usuario ficticio
-        $dbMock->expects($this->once())
-               ->method('getUserById')
-               ->with(1)
-               ->willReturn(['first_name' => 'John', 'last_name' => 'Doe']);
+        // Definir el comportamiento esperado del mock
+        $mock->expects($this->once())
+             ->method('sum')
+             ->with(2, 3)
+             ->willReturn(5);
 
-        // Creamos una instancia de UserService utilizando el mock de la base de datos
-        $userService = new TestingMockDB($dbMock);
+        // Utilizar el mock en lugar de la instancia real
+        $result = $mock->sum(2, 3);
 
-        // Probamos la función getUserFullName
-        $result = $userService->getUserFullName(1);
-
-        // Verificamos que el resultado sea el esperado
-        $this->assertEquals('John Doe', $result);
+        // Verificar el resultado usando el mock
+        $this->assertEquals(2, $result);
+    
     }
 
 }
