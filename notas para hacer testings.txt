@@ -81,12 +81,37 @@ por ejemplo tienes un metodo para encontrar la temperatura pero esta temperatura
 devuelve la temperatura actual, y para las pruebas no solo te sirve esa
 temperatura en especifico, entonces con un mock lo que haras es que usas 
 ese metodo y devuelves lo que tu quieres que devuelva especificamente
-ESTO PUEDE AYUDAR A SIMULAR BASES DE DATOS
 
 
+TAMBIEN AYUDA A LA RAPIDEZ DEL TESTING, PORQUE SI POR ALGUNA RAZON 
+LLAMAS A UNA API EXTERNA REALMENTE NO LA USAS,PORQUE TU BUSCAS EL RESULTADO ESPECIFICO
+QUE NECESITAS PARA LOS TESTS.
 
+EJEMPLO USANDO LA FUNCION SUM (SUMAR):
+  public function testMockSum()
+    {
+        // Crear un mock para la clase Calculator
+        $mock = $this->getMockBuilder(Testing::class) 
+                     ->getMock();
 
+        // Definir el comportamiento esperado del mock
+        $mock->expects($this->once())
+             ->method('sum')
+             ->with(2, 3)
+             ->willReturn(5);
 
+        // Utilizar el mock en lugar de la instancia real
+        $result = $mock->sum(2, 3);
+
+        // Verificar que el resultado sea 5 usando el mock (result)
+        $this->assertEquals(5, $result);
+    
+    }
+
+-recordar que Testing:class se refiere a la clase que vas a usar, en este caso
+Testing es la clase donde tengo guardada la funcion sum.
+
+--------------------------------------------------------------------
 la programacion del testing se basa
 
 esperar resultados especificos de las funciones

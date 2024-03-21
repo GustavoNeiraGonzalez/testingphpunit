@@ -86,8 +86,11 @@ class OperationsTest extends TestCase{
 
     // ----------------------------------
     // aqui haremos pruebas usando mock para simular una bdd
-    public function testMockSum()
+    public function testMockSumWithTwoValue()
     {
+        $num1 = 1;
+        $num2 = 2;
+        $resultSum = 3;
         // Crear un mock para la clase Calculator
         $mock = $this->getMockBuilder(Testing::class)
                      ->getMock();
@@ -95,14 +98,14 @@ class OperationsTest extends TestCase{
         // Definir el comportamiento esperado del mock
         $mock->expects($this->once())
              ->method('sum')
-             ->with(2, 3)
-             ->willReturn(5);
+             ->with($num1,$num2)
+             ->willReturn($resultSum);
 
         // Utilizar el mock en lugar de la instancia real
-        $result = $mock->sum(2, 3);
+        $result = $mock->sum($num1,$num2);
 
         // Verificar el resultado usando el mock
-        $this->assertEquals(2, $result);
+        $this->assertEquals($resultSum, $result);
     
     }
 
