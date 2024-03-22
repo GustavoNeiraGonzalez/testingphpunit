@@ -62,7 +62,13 @@ class OperationsTest extends TestCase{
         // --- data providers --- 
    
     
-
+    //aqui usamos los data providers, que al final son lo que hacen que no
+    //escribas los tests similares una y otra vez, aqui mas que nada son
+    //test que estan correctos con sus datos, por ejemplo no esperar que
+    //fallen ya sea por excepciones o datos invalidos como una division 
+    //que no coincida, porque ya esto se maneja por separado, ni juntas las
+    //excepciones en otro data providers, eso no se hace, las excepciones por 
+    //separado
     public static function divisionDataProvider()
     {
         return [
@@ -71,8 +77,6 @@ class OperationsTest extends TestCase{
             [10,5,2]
         ];
     }
-
-
     /**
      * @dataProvider divisionDataProvider
      */
@@ -82,24 +86,6 @@ class OperationsTest extends TestCase{
         $this->assertEquals($expected, $result);
     }
 
-    public static function invalidDivisionDataProvider()
-    {
-        return [
-            [6, 0, 0], // División por cero (debe lanzar una excepción)
-            [6, '1', 2], // División por cero (debe lanzar una excepción)
-
-        ];
-    }
-
-    /**
-     * @dataProvider invalidDivisionDataProvider
-     */
-    public function testInvalidDivide($dividend, $divisor, $expected)
-    {
-        $this->expectException(DivisionByZeroError::class);
-        $this->expectException(InvalidArgumentException::class);
-        $this->op->divide($dividend, $divisor);
-    }
     // ----------------------------------
     // aqui haremos pruebas usando mock para simular una bdd
     public function testMockSumWithTwoValue()
