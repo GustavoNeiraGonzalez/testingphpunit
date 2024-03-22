@@ -143,6 +143,25 @@ EJEMPLO USANDO LA FUNCION SUM (SUMAR):
 -recordar que Testing:class se refiere a la clase que vas a usar, en este caso
 Testing es la clase donde tengo guardada la funcion sum.
 
+----
+CODE COVERAGE: 
+es la cuantificacion de cuanto del codigo ha sido testeado 
+
+primero hay que tener instalado xdebug en php, para instalarlo usamos esta pagina
+https://xdebug.org/wizard aqui nos pide que ujecutemos php -i y copiemos TODO lo
+que nos aparezca en la terminal, dentro del cuadro de la pagina, descargamos el archivo
+lo renombramos segun lo que nos indica las instrucciones y luego lo ponemos en la
+ubicacion requerida (C:\xampp\php\ext), retrocedemos a php dentro de la ubicacion
+ y en php.ini 
+buscamos "zend_extension" y abajito de donde nos encuentra ponemos:
+zend_extension = xdebug
+luego para verificar que esta instalado xdebug en la terminal ponemos php -v
+y veremos si esta xdebug o no
+
+(POR ALGUN MOTIVO NO ME FUNCIONA USAR EL COMANDO PARA GENERAR COVERAGES 
+./vendor/bin/phpunit --converage-html micover
+ME DEVUELVE LOS COMANDOS COMO SI ESTUVIERA pidiendo todos los comandos )
+
 --------------------------------------------------------------------
 la programacion del testing se basa
 
